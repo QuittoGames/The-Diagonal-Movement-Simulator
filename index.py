@@ -8,7 +8,9 @@ import asyncio
 data_local = data()
 
 def Start():
-    print("oi")
+    pygame.init()
+
+    pygame.display(100,100)
 
 async def main():
     asyncio.create_task(tool.verify_modules())
