@@ -2,4 +2,4 @@ from dataclasses import dataclass
 
 @dataclass
 class data:
-    pass
+    modules_local = ["models","assets"] # Adicona os path das folder

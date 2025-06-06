@@ -8,13 +8,13 @@ import asyncio
 data_local = data()
 
 def Start():
-    pass
+    print("oi")
 
-def main():
-    asyncio.create_task(tool.add_path_modules())
+async def main():
     asyncio.create_task(tool.verify_modules())
+    asyncio.create_task(tool.add_path_modules(data_local))
     return
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
     Start()
