@@ -1,6 +1,6 @@
 import pygame
 import pymunk
-from tool import tool
+from tool import tool, rgb, color
 from data import data
 import asyncio
 
@@ -8,17 +8,44 @@ import asyncio
 data_local = data()
 pygame.init()
 
+#Atribuições para inicialização (pygame e pymunk)
+screen = pygame.display.set_mode((600, 600))
+clock = pygame.time.Clock()
+fonte = pygame.font.Font(None, 32)
+
+space = pymunk.Space()
+space.gravity = (0, 200)
+
+draw_options = pymunk.pygame_util.DrawOptions(screen)
+
 #Variáveis de controle
 control_ball = True #As variáveis de controle no pygame são essenciais para todos os objetos que se locomovem pela tela
-control_floor = True
-control_loop = True #Variável de controle do loop principal
+
+running = True #Variável de controle do loop principal
 
 #Loop principal
-while control_loop:
-    for event in pygame.event.get(): #Eventos de interação do usuário
+while running:
+    #Eventos de interação do usuário
+    for event in pygame.event.get(): 
+        #Interrupção da execução do jogo
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+
+        #Interações com o teclado
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+
+    screen.fill(rgb(color['white']))
+    
+    #Atualização dos quadros de física (pymunk)
+    space.step(1 / 60)
+    space.debug_draw(draw_options)
+    
+    #Display e Taxa de quadros (pygame)
+    pygame.display.flip()
+    clock.tick(60)
 
 def Start():
     print("oi")
