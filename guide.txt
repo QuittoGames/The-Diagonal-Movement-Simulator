@@ -1,0 +1,10 @@
+Classes necessárias para o funcionamento do jogo:
+1. Projétil (com opção de mudança de aparência)
+2. Lançador (com opção de mudança de aparência)
+3. Inputbox
+4. Trajetória
+5. Main (index.py)
+
+Como o jogo funcionará?
+Haverá um cenário pronto com um lançador, onde após todos as opções de personalização do projétil serem preenchidas
+ele poderá ser lançado e demonstrará todos os cálculos feitos em tempo real e a trajetória do mesmo

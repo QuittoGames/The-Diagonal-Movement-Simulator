@@ -1,8 +1,21 @@
 import pygame
 import pymunk
-from tool import tool, rgb, color
+import pymunk.pygame_util
+from tool import tool
 from data import data
 import asyncio
+
+#Declaração de variáveis
+color = {
+        'white': "#BDBDBD",
+        'black': "#000000",
+        'gray': "#3D3D3D",
+        'blue': "#6C6AE2",
+        'yellow': "#D8DF82",
+        'red': "#FF6969",
+        'orange': "#FFB972",
+        'green': "#82F77C",
+    }
 
 #Iniliza Uma data local para haver modificaçoes no atributo
 data_local = data()
@@ -37,7 +50,8 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
 
-    screen.fill(rgb(color['white']))
+    screen.fill(tool.rgb(color['white']))
+    #screen.fill((12, 0, 25))
     
     #Atualização dos quadros de física (pymunk)
     space.step(1 / 60)

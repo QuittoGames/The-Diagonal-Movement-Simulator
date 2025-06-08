@@ -38,15 +38,6 @@ class tool:
         hexadecimal = hexadecimal.lstrip('#')
         return tuple(int(hexadecimal[i:i+2], 16) for i in (0, 2, 4))
 
-    color = {
-        'white': "#BDBDBD",
-        'black': "#000000",
-        'gray': "#3D3D3D",
-        'blue': "#6C6AE2",
-        'yellow': "#D8DF82",
-        'red': "#FF6969",
-        'orange': "#FFB972",
-        'green': "#82F77C",
-    }
+    
 
     
