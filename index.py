@@ -33,8 +33,9 @@ draw_options = pymunk.pygame_util.DrawOptions(screen)
 
 #Variáveis de controle
 control_ball = True #As variáveis de controle no pygame são essenciais para todos os objetos que se locomovem pela tela
-
 running = True #Variável de controle do loop principal
+
+#Variáveis dos inputs
 
 #Loop principal
 while running:
@@ -51,7 +52,6 @@ while running:
                 pygame.quit()
 
     screen.fill(tool.rgb(color['white']))
-    #screen.fill((12, 0, 25))
     
     #Atualização dos quadros de física (pymunk)
     space.step(1 / 60)
