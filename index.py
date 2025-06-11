@@ -10,11 +10,7 @@ color = {
         'white': "#BDBDBD",
         'black': "#000000",
         'gray': "#3D3D3D",
-        'blue': "#6C6AE2",
-        'yellow': "#D8DF82",
-        'red': "#FF6969",
-        'orange': "#FFB972",
-        'green': "#82F77C",
+        'background': "#b4d2df",
     }
 
 #Iniliza Uma data local para haver modificaçoes no atributo

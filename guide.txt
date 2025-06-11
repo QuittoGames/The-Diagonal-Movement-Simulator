@@ -8,3 +8,9 @@ Classes necessárias para o funcionamento do jogo:
 Como o jogo funcionará?
 Haverá um cenário pronto com um lançador, onde após todos as opções de personalização do projétil serem preenchidas
 ele poderá ser lançado e demonstrará todos os cálculos feitos em tempo real e a trajetória do mesmo
+
+Subdivisão de tarefas:
+1. Desenho de todos os assets
+2. Estudo de cálculos
+3. Desenvolvimento do Menu inicial
+4. Jogo em ação
