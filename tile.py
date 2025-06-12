@@ -41,21 +41,72 @@ class TileMap():
     
     def load_tiles(self, filename):
         tiles = []
-        map = self.read_cs(filename)
+        map = self.read_csv(filename)
         x, y = 0, 0
         for row in map:
             x = 0
             #Se necessário alterar a Matriz CSV já que pode acabar sendo necessário para alguns sprites
             for tile in row:
-                if tile == '0':
+                if tile == '-1':
                     self.start_x, self.start_y = x * self.tile_size, y * self.tile_size
+                
+                #Chão
+                elif tile == '9':
+                    tiles.append(Tile('grama.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '10':
+                    tiles.append(Tile('terra.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                
+                #Graminea
+                elif tile == '30':
+                    tiles.append(Tile('graminea1.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
                 elif tile == '1':
-                    tiles.append(Tile('path', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                    tiles.append(Tile('graminea2.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
                 elif tile == '2':
-                    tiles.append(Tile('path', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                #continuando...
+                    tiles.append(Tile('graminea3.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '18':
+                    tiles.append(Tile('graminea4.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '19':
+                    tiles.append(Tile('graminea5.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                
+                #Nuvens
+                elif tile == '3':
+                    tiles.append(Tile('nuvem1.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '12':
+                    tiles.append(Tile('nuvem2.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '21':
+                    tiles.append(Tile('nuvem3.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '4':
+                    tiles.append(Tile('nuvem4.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '13':
+                    tiles.append(Tile('nuvem5.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '22':
+                    tiles.append(Tile('nuvem6.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '5':
+                    tiles.append(Tile('nuvem7.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '14':
+                    tiles.append(Tile('nuvem8.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '23':
+                    tiles.append(Tile('nuvem9.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '6':
+                    tiles.append(Tile('nuvem10.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '15':
+                    tiles.append(Tile('nuvem11.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '24':
+                    tiles.append(Tile('nuvem12.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '7':
+                    tiles.append(Tile('nuvem13.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '16':
+                    tiles.append(Tile('nuvem14.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '25':
+                    tiles.append(Tile('nuvem15.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '8':
+                    tiles.append(Tile('nuvem16.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '17':
+                    tiles.append(Tile('nuvem17.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile == '26':
+                    tiles.append(Tile('nuvem18.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
                 x += 1
             y += 1
 
-        self.map_w, self.map_h = x * self.tile_size, y = self.tile_size
+        self.map_w, self.map_h = x * self.tile_size, y * self.tile_size
         return tiles

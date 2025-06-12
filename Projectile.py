@@ -1,6 +1,6 @@
 import pymunk
 
-class projectile:
+class Projectile:
     #Método construtor
     def __init__(self, space, position, mass, radius, inertia, elasticity):
         self.mass = mass

@@ -6,7 +6,7 @@ from data import data
 import sys
 
 @dataclass
-class tool:
+class Tool:
     def clear_screen():
         if platform.system() == "Windows":
             os.system('cls')

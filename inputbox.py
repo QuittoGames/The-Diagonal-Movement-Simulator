@@ -1,6 +1,6 @@
 import pygame
 
-class inputbox:
+class Inputbox:
     def __init__(left, top, width, height,color ,border):
         self.left = left
         self.top = top

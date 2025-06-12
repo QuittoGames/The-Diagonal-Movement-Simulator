@@ -1,11 +1,25 @@
 import pygame
 import pymunk
 import pymunk.pygame_util
-from tool import tool
+
+from tool import *
 from data import data
 import asyncio
 
-#Declaração de variáveis
+from tilesheet import Tilesheet
+from tile import *
+
+data_local = data()
+pygame.init()
+
+#Atribuições para inicialização (pygame e pymunk)
+screen_w, screen_h = 1296, 360
+screen = pygame.display.set_mode((screen_w, screen_h))
+canvas = pygame.Surface((screen_w, screen_h))
+clock = pygame.time.Clock()
+
+#Variáveis de personalização
+fonte = pygame.font.Font(None, 32)
 color = {
         'white': "#BDBDBD",
         'black': "#000000",
@@ -13,58 +27,35 @@ color = {
         'background': "#b4d2df",
     }
 
-#Iniliza Uma data local para haver modificaçoes no atributo
-data_local = data()
-pygame.init()
-
-#Atribuições para inicialização (pygame e pymunk)
-screen = pygame.display.set_mode((600, 600))
-clock = pygame.time.Clock()
-fonte = pygame.font.Font(None, 32)
-
 space = pymunk.Space()
 space.gravity = (0, 200)
 
 draw_options = pymunk.pygame_util.DrawOptions(screen)
 
+#Carregando o tilemap
+tilesheet = Tilesheet('tilesheet.png')
+map = TileMap('tilemap.csv', tilesheet )
+
 #Variáveis de controle
-control_ball = True #As variáveis de controle no pygame são essenciais para todos os objetos que se locomovem pela tela
-running = True #Variável de controle do loop principal
+control_ball = True 
+running = True
 
-#Variáveis dos inputs
-
-#Loop principal
 while running:
-    #Eventos de interação do usuário
     for event in pygame.event.get(): 
-        #Interrupção da execução do jogo
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
-        #Interações com o teclado
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
 
-    screen.fill(tool.rgb(color['white']))
-    
-    #Atualização dos quadros de física (pymunk)
+    screen.fill(Tool.rgb(color['background']))
     space.step(1 / 60)
     space.debug_draw(draw_options)
-    
-    #Display e Taxa de quadros (pygame)
+
+    canvas.fill(Tool.rgb(color['background']))
+    map.draw_map(canvas)
+    screen.blit(canvas, (0, 0))
+
     pygame.display.flip()
     clock.tick(60)
-
-def Start():
-    print("oi")
-
-async def main():
-    asyncio.create_task(tool.verify_modules())
-    asyncio.create_task(tool.add_path_modules(data_local))
-    return
-
-if __name__ == "__main__":
-    asyncio.run(main())
-    Start()

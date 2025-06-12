@@ -1,6 +1,6 @@
 import pygame
 
-class floor:
+class Floor:
     print('Testando')
 #     #Valores de atribuição padrão para o chão
 #     body = pymunk.Body(body_type=pymunk.Body.STATIC)
