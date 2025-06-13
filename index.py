@@ -2,6 +2,7 @@ import pygame
 import pymunk
 from tool import tool
 from data import data
+from config import Config
 import asyncio
 
 #Iniliza Uma data local para haver modificaçoes no atributo
@@ -10,7 +11,7 @@ data_local = data()
 def Start():
     pygame.init()
 
-    pygame.display(100,100)
+    pygame.display(Config.resX, Config.resY)
 
 async def main():
     asyncio.create_task(tool.verify_modules())
