@@ -26,8 +26,8 @@ def Start():
     draw_options = pymunk.pygame_util.DrawOptions(screen)
 
     #Carregando o tilemap
-    tilesheet = Tilesheet('tilesheet.png')
-    map = TileMap('tilemap.csv', tilesheet )
+    tilesheet = Tilesheet('data/tilesheet.png')
+    map = TileMap('data/tilemap.csv', tilesheet )
 
     #Variáveis de controle
     control_ball = True 

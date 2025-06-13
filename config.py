@@ -8,7 +8,7 @@ class Config:
     FPS: int = 60
 
     #Variáveis de personalização
-    fonte = pygame.font.Font(None, 32)
+    # fonte = pygame.font.Font(None, 32)
     color = {
             'white': "#BDBDBD",
             'black': "#000000",
