@@ -9,6 +9,7 @@ import asyncio
 
 from models.tilesheet import Tilesheet
 from models.tile import *
+from models.InputBox import Inputbox
 
 data_local = data()
 
@@ -42,6 +43,9 @@ def Start():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
+
+        input_box = pygame.Rect(100, 80, 140, 40)
+
         screen.fill(Tool.rgb(Config.color['background']))
         space.step(1 / 60)
         space.debug_draw(draw_options)
@@ -51,7 +55,7 @@ def Start():
         screen.blit(canvas, (0, 0))
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(Config.FPS)
 
 
 if __name__ == "__main__":
