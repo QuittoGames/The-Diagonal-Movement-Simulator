@@ -6,7 +6,7 @@ from data import data
 import sys
 
 @dataclass
-class tool:
+class Tool:
     def clear_screen():
         if platform.system() == "Windows":
             os.system('cls')
@@ -20,7 +20,7 @@ class tool:
             subprocess.run([sys.executable, "-m", "pip", "install", "-r", req_path], check=True)
         
         except Exception as E:
-            print(f"Erro Na Verificaçao De Modulos, Erro: {E}")
+            print(f"Erro na verificação De módulos; Erro: {E}")
             return
         
     async def add_path_modules(data_local:data):
@@ -31,6 +31,13 @@ class tool:
                 if data_local.Debug:print(f"Module_local: {i}")
             return
         except Exception as E:
-            print(f"Erro Al Adicionar Os Caminhos Brutos, Erro: {E}")
+            print(f"Erro ao adicionar os caminhos brutos; Erro: {E}")
             return
-   
+    
+    def rgb(hexadecimal): #Exemplo de uso: rgb(color['white'])
+        hexadecimal = hexadecimal.lstrip('#')
+        return tuple(int(hexadecimal[i:i+2], 16) for i in (0, 2, 4))
+
+    
+
+    
