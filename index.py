@@ -86,6 +86,7 @@ def Start():
         pygame.draw.rect(screen, color, (input_box.x, input_box.y, input_box.width, input_box.height), 2, border_radius=10)
         txt_surface = font.render(input_box.text, True, pygame.Color('white'))
         screen.blit(txt_surface, (input_box.x + 5, input_box.y + 8))
+        
 
         pygame.display.flip()
         clock.tick(Config.FPS)
