@@ -57,7 +57,7 @@ def Start():
                         input_box.text = input_box.text[:-1]
                     else:
                         # Limite de 20 caracteres
-                        if len(input_box.text) < 20:
+                        if len(input_box.text) < 5:
                             input_box.text += event.unicode
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
