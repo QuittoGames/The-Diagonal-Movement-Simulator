@@ -32,7 +32,7 @@ def Start():
 
     font = pygame.font.Font(None, 32)
 
-    #InputBox no canto inferior direito com margem
+    #InputBox
     input_width, input_height = 200, 40
     margin = 20
     input_x = Config.resX - input_width - margin
@@ -60,6 +60,13 @@ def Start():
                         if len(input_box.text) < 5:
                             input_box.text += event.unicode
 
+                if input_box.text == '' and not input_box.active:
+                    placeholder = font.render("Digite aqui...", True, pygame.Color('gray'))
+                    screen.blit(placeholder, (input_box.x + 5, input_box.y + 8))
+                else:
+                    txt_surface = font.render(input_box.text, True, pygame.Color('white'))
+                    screen.blit(txt_surface, (input_box.x + 5, input_box.y + 8))
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.Rect(input_box.x, input_box.y, input_box.width, input_box.height).collidepoint(event.pos):
                     input_box.active = True
@@ -76,7 +83,7 @@ def Start():
 
         # Desenha InputBox
         color = pygame.Color('lightskyblue3') if input_box.active else pygame.Color('gray')
-        pygame.draw.rect(screen, color, (input_box.x, input_box.y, input_box.width, input_box.height), 2)
+        pygame.draw.rect(screen, color, (input_box.x, input_box.y, input_box.width, input_box.height), 2, border_radius=10)
         txt_surface = font.render(input_box.text, True, pygame.Color('white'))
         screen.blit(txt_surface, (input_box.x + 5, input_box.y + 8))
 
