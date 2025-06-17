@@ -30,7 +30,7 @@ def Start():
     tilesheet = Tilesheet('data/tilesheet.png')
     map = TileMap('data/tilemap.csv', tilesheet)
 
-    font = pygame.font.Font(None, 32)
+    font = pygame.font.Font(Config.font, 32)
 
     #InputBox
     input_width, input_height = 200, 40
