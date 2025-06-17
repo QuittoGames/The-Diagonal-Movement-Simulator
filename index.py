@@ -2,13 +2,15 @@ import pygame
 import pymunk
 import pymunk.pygame_util
 
-from tool import *
+from tool import Tool
 from data import data
 from config import Config
+
 import asyncio
+from dataclasses import dataclass
 
 from models.tilesheet import Tilesheet
-from models.tile import *
+from models.tile import TileMap
 from models.InputBox import Inputbox
 
 data_local = data()
@@ -16,7 +18,6 @@ data_local = data()
 def Start():
     pygame.init()
 
-    #Atribuições para inicialização (pygame e pymunk)
     screen = pygame.display.set_mode((Config.resX, Config.resY))
     canvas = pygame.Surface((Config.resX, Config.resY))
     clock = pygame.time.Clock()
@@ -26,16 +27,21 @@ def Start():
 
     draw_options = pymunk.pygame_util.DrawOptions(screen)
 
-    #Carregando o tilemap
     tilesheet = Tilesheet('data/tilesheet.png')
-    map = TileMap('data/tilemap.csv', tilesheet )
+    map = TileMap('data/tilemap.csv', tilesheet)
 
-    #Variáveis de controle
-    control_ball = True 
+    font = pygame.font.Font(None, 32)
+
+    #InputBox no canto inferior direito com margem
+    input_width, input_height = 200, 40
+    margin = 20
+    input_x = Config.resX - input_width - margin
+    input_y = Config.resY - input_height - margin
+    input_box = Inputbox(input_x, input_y, input_width, input_height)
+
     running = True
-
     while running:
-        for event in pygame.event.get(): 
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
@@ -43,8 +49,22 @@ def Start():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
+                if input_box.active:
+                    if event.key == pygame.K_RETURN:
+                        print(f"Input: {input_box.text}")
+                        input_box.text = ''
+                    elif event.key == pygame.K_BACKSPACE:
+                        input_box.text = input_box.text[:-1]
+                    else:
+                        # Limite de 20 caracteres
+                        if len(input_box.text) < 20:
+                            input_box.text += event.unicode
 
-        input_box = pygame.Rect(100, 80, 140, 40)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.Rect(input_box.x, input_box.y, input_box.width, input_box.height).collidepoint(event.pos):
+                    input_box.active = True
+                else:
+                    input_box.active = False
 
         screen.fill(Tool.rgb(Config.color['background']))
         space.step(1 / 60)
@@ -54,9 +74,14 @@ def Start():
         map.draw_map(canvas)
         screen.blit(canvas, (0, 0))
 
+        # Desenha InputBox
+        color = pygame.Color('lightskyblue3') if input_box.active else pygame.Color('gray')
+        pygame.draw.rect(screen, color, (input_box.x, input_box.y, input_box.width, input_box.height), 2)
+        txt_surface = font.render(input_box.text, True, pygame.Color('white'))
+        screen.blit(txt_surface, (input_box.x + 5, input_box.y + 8))
+
         pygame.display.flip()
         clock.tick(Config.FPS)
-
 
 if __name__ == "__main__":
     Start()
