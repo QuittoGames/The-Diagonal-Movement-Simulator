@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 from models.tilesheet import Tilesheet
 from models.tile import TileMap
-from models.InputBox import Inputbox
+from models.inputbox import Inputbox
 
 data_local = data()
 
