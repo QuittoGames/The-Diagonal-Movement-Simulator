@@ -12,3 +12,4 @@ CINZA = (120, 120, 120)
 
 fonte_padrao = pygame.font.SysFont('Arial', 18)
 fonte_input = pygame.font.SysFont('Arial', 22)
+
